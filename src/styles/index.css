@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&family=Roboto+Slab:wght@700&family=Space+Mono:wght@700&display=swap");
+:root {
+  /* THEME COLORS */
+
+  /* red */
+  --app-red: hsl(0, 91%, 71%);
+  /* teal */
+  --app-teal: hsl(182, 91%, 71%);
+  /* purple */
+  --app-purple: hsl(284, 89%, 74%);
+  /* red */
+  --app-grey: hsl(227, 100%, 92%);
+
+  /* BACKGROUND COLORS */
+
+  /* primary background */
+  --app-primary-bk: hsl(235, 35%, 18%);
+  /* secondary background */
+  --app-secondary-bk: hsl(234, 39%, 14%);
+
+  /* primary white */
+  --app-primary-white: hsl(0, 0%, 100%);
+  /* secondary white */
+  --app-secondary-white: hsl(229, 52%, 96%);
+}
