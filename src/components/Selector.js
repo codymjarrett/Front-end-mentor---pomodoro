@@ -18,6 +18,7 @@ const TextStyles = styled.button`
   font-size: 14px;
   display: block;
   padding: 0 2rem;
+  transition: ease-in 200ms all;
   background-color: ${({ color, selection, text }) => {
     if (selection === text) {
       return color;

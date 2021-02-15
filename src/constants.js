@@ -1,8 +1,8 @@
 // color
-export const APP_RED = "red";
-export const APP_TEAL = "teal";
-export const APP_PURPLE = "purple";
-export const APP_GREY = "grey";
+export const APP_RED = `hsl(0, 91%, 71%)`;
+export const APP_TEAL = `hsl(182, 91%, 71%)`;
+export const APP_PURPLE = `hsl(284, 89%, 74%)`;
+export const APP_GREY = `hsl(227, 100%, 92%)`;
 
 //font
 

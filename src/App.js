@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 import Selector from "./components/Selector";
+import Pomodoro from "./components/Pomodoro";
+import GearIcon from "./svg/GearIcon";
 
 const AppStyles = styled.div`
   background-color: var(--app-primary-bk);
@@ -27,6 +29,12 @@ function App() {
       >
         <TitleStyles>pomodoro</TitleStyles>
         <Selector />
+        <div style={{ marginTop: "3rem" }}>
+          <Pomodoro />
+        </div>
+        <div style={{ marginTop: "2rem" }}>
+          <GearIcon />
+        </div>
       </div>
     </AppStyles>
   );
