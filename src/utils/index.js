@@ -1,4 +1,4 @@
-export const generateNIncrements = (n) => {
+export const generateIncrementsOfN = (n) => {
   const min = 5;
   const max = n;
   const segment = 5;
