@@ -1,7 +1,7 @@
 import ReactModal from "react-modal";
 import styled from "styled-components";
 import { FONT_MAP, KUMBH_SANS } from "../constants.js";
-import { generateNIncrements } from "../utils";
+import { generateIncrementsOfN } from "../utils";
 
 import SelectionButton from "./SelectionButton";
 
@@ -166,7 +166,7 @@ export default function Modal(props) {
               <div>
                 <label htmlFor="pomodoro">pomodoro</label>
                 <select name="pomodoro" id="pomodoro">
-                  {generateNIncrements(100).map((num) => (
+                  {generateIncrementsOfN(100).map((num) => (
                     <option value={num}>{num}</option>
                   ))}
                 </select>
@@ -174,7 +174,7 @@ export default function Modal(props) {
               <div>
                 <label htmlFor="shortBreak">short break</label>
                 <select name="shortBreak" id="shortBreak">
-                  {generateNIncrements(50).map((num) => (
+                  {generateIncrementsOfN(50).map((num) => (
                     <option value={num}>{num}</option>
                   ))}
                 </select>
@@ -182,7 +182,7 @@ export default function Modal(props) {
               <div>
                 <label htmlFor="longBreak">long break</label>
                 <select name="longBreak" id="longBreak">
-                  {generateNIncrements(50).map((num) => (
+                  {generateIncrementsOfN(50).map((num) => (
                     <option value={num}>{num}</option>
                   ))}
                 </select>
