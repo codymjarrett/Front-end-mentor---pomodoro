@@ -1,14 +1,12 @@
 import styled from "styled-components";
 
 const GearIconButton = styled.button`
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
   display: block;
 `;
-export default function GearIcon() {
+export default function GearIcon(props) {
+  const { toggleModal } = props;
   return (
-    <GearIconButton>
+    <GearIconButton onClick={toggleModal}>
       <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28">
         <path
           fill="#D7E0FF"

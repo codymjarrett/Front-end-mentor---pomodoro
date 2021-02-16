@@ -1,7 +1,13 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
-import { LONG_BREAK, POMODORO, SHORT_BREAK, SET_SELECTION } from "../constants";
+import {
+  LONG_BREAK,
+  POMODORO,
+  SHORT_BREAK,
+  SET_SELECTION,
+  FONT_MAP,
+} from "../constants";
 
 const SelectorContainer = styled.div`
   background-color: var(--app-secondary-bk);
@@ -25,16 +31,10 @@ const TextStyles = styled.button`
     }
     return "transparent";
   }};
-  border: none;
   border-radius: 25px;
-  cursor: pointer;
 
   &:hover {
     color: var(--app-primary-white);
-  }
-
-  &:focus {
-    outline: none;
   }
 `;
 
@@ -51,7 +51,7 @@ export default function Selector(props) {
     <SelectorContainer>
       {[POMODORO, SHORT_BREAK, LONG_BREAK].map((selectionText, index) => (
         <TextStyles
-          font={font}
+          font={FONT_MAP[font]}
           selection={selection}
           color={color}
           key={index}

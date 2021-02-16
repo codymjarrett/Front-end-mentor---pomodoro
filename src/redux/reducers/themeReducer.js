@@ -3,6 +3,8 @@ import produce from "immer";
 import {
   APP_RED,
   SPACE_MONO,
+  KUMBH_SANS,
+  ROBOTO_SLAB,
   SET_COLOR,
   SET_FONT,
   SET_LONG_BREAK,
@@ -18,7 +20,7 @@ const INITIAL_STATE = {
   pomodoro: 25,
   short_break: 5,
   long_break: 15,
-  font: SPACE_MONO,
+  font: KUMBH_SANS,
   color: APP_RED,
   selection: POMODORO,
 };

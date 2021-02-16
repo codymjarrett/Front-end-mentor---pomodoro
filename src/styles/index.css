@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&family=Roboto+Slab:wght@700&family=Space+Mono:wght@700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&family=Roboto+Slab:wght@700,400&family=Space+Mono:wght@700&display=swap"); */
 :root {
   /* THEME COLORS */
 
@@ -22,4 +22,14 @@
   --app-primary-white: hsl(0, 0%, 100%);
   /* secondary white */
   --app-secondary-white: hsl(229, 52%, 96%);
+}
+
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
 }

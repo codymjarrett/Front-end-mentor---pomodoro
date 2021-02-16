@@ -24,3 +24,9 @@ export const SET_SELECTION = "SET_SELECTION";
 export const POMODORO = "pomodoro";
 export const SHORT_BREAK = "short break";
 export const LONG_BREAK = "long break";
+
+export const FONT_MAP = {
+  [KUMBH_SANS]: "Kumbh Sans, sans-serif",
+  [ROBOTO_SLAB]: "Roboto Slab, serif",
+  [SPACE_MONO]: "Space Mono, monospace",
+};

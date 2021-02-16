@@ -14,8 +14,8 @@ export default function ProgressBar() {
   return (
     <div>
       <ProgressBarStyles
-        width="350"
-        height="350"
+        width="360"
+        height="360"
         viewBox="0 0 120 120"
         color={color}
       >

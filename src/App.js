@@ -1,7 +1,9 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 import Selector from "./components/Selector";
 import Pomodoro from "./components/Pomodoro";
+import Modal from "./components/Modal";
 import GearIcon from "./svg/GearIcon";
 
 const AppStyles = styled.div`
@@ -13,10 +15,12 @@ const TitleStyles = styled.h1`
   color: var(--app-primary-white);
   font-family: "Kumbh Sans";
   font-size: 28px;
-  margin: 3rem 0;
+  margin: 4rem 0;
 `;
 
 function App() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const toggleModal = () => setModalOpen(!modalOpen);
   return (
     <AppStyles>
       <div
@@ -29,13 +33,14 @@ function App() {
       >
         <TitleStyles>pomodoro</TitleStyles>
         <Selector />
-        <div style={{ marginTop: "3rem" }}>
+        <div style={{ marginTop: "4rem" }}>
           <Pomodoro />
         </div>
-        <div style={{ marginTop: "2rem" }}>
-          <GearIcon />
+        <div style={{ marginTop: "4rem" }}>
+          <GearIcon toggleModal={toggleModal} />
         </div>
       </div>
+      <Modal isOpen={modalOpen} toggleModal={toggleModal} />
     </AppStyles>
   );
 }
