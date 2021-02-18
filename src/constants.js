@@ -14,10 +14,8 @@ export const SPACE_MONO = "Space Mono";
 
 export const SET_COLOR = "SET_COLOR";
 export const SET_FONT = "SET_FONT";
-export const SET_POMODORO = "SET_POMODORO";
-export const SET_SHORT_BREAK = "SET_SHORT_BREAK";
-export const SET_LONG_BREAK = "SET_LONG_BREAK";
 export const SET_SELECTION = "SET_SELECTION";
+export const SET_TIME_SETTINGS = "SET_TIME_SETTINGS";
 
 // selections
 

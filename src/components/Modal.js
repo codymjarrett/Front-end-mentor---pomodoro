@@ -1,9 +1,11 @@
+import { useState } from "react";
 import ReactModal from "react-modal";
 import styled from "styled-components";
-import { FONT_MAP, KUMBH_SANS } from "../constants.js";
-import { generateIncrementsOfN } from "../utils";
+import { FONT_MAP, KUMBH_SANS, SET_TIME_SETTINGS } from "../constants.js";
+import { useDispatch } from "react-redux";
 
 import SelectionButton from "./SelectionButton";
+import CustomNumberInput from "./CustomNumberInput";
 
 // styles for modal ugh
 import "../styles/modal.css";
@@ -30,48 +32,29 @@ const ApplyButton = styled.button`
 
 export default function Modal(props) {
   const { isOpen, toggleModal } = props;
+  const [pomodoroState, setPomodoroState] = useState(25);
+  const [shortBreakState, setShortBreakState] = useState(5);
+  const [longBreakState, setLongBreakState] = useState(15);
+  const dispatch = useDispatch();
+
+  const applySettingChanges = () => {
+    dispatch({
+      type: SET_TIME_SETTINGS,
+      payload: {
+        pomodoro: pomodoroState,
+        short_break: shortBreakState,
+        long_break: longBreakState,
+      },
+    });
+  };
+
   return (
     <div>
       <ReactModal
-        isOpen={
-          isOpen
-          /* Boolean describing if the modal should be shown or not. */
-        }
-        //   onAfterOpen={
-        //     handleAfterOpenFunc
-        //     /* Function that will be run after the modal has opened. */
-        //   }
-        //   onAfterClose={
-        //     handleAfterCloseFunc
-        //     /* Function that will be run after the modal has closed. */
-        //   }
-        //   onRequestClose={
-        //     handleRequestCloseFunc
-        //     /* Function that will be run when the modal is requested
-        //      to be closed (either by clicking on overlay or pressing ESC).
-        //      Note: It is not called if isOpen is changed by other means. */
-        //   }
-        closeTimeoutMS={
-          0
-          /* Number indicating the milliseconds to wait before closing
-         the modal. */
-        }
-        //   style={
-        //     { overlay: {}, content: {} }
-        //     /* Object indicating styles to be used for the modal.
-        //      It has two keys, `overlay` and `content`.
-        //      See the `Styles` section for more details. */
-        //   }
-        contentLabel={
-          "Example Modal"
-          /* String indicating how the content container should be announced
-         to screenreaders */
-        }
-        portalClassName={
-          "ReactModalPortal"
-          /* String className to be applied to the portal.
-         See the `Styles` section for more details. */
-        }
+        isOpen={isOpen}
+        closeTimeoutMS={0}
+        contentLabel={"Example Modal"}
+        portalClassName={"ReactModalPortal"}
         overlayClassName={
           "ReactModal__Overlay"
           /* String className to be applied to the overlay.
@@ -164,28 +147,28 @@ export default function Modal(props) {
             <h2>TIME (MINUTES)</h2>
             <div>
               <div>
-                <label htmlFor="pomodoro">pomodoro</label>
-                <select name="pomodoro" id="pomodoro">
-                  {generateIncrementsOfN(100).map((num) => (
-                    <option value={num}>{num}</option>
-                  ))}
-                </select>
+                <CustomNumberInput
+                  name="pomodoro"
+                  text="pomodoro"
+                  value={pomodoroState}
+                  handleOnChange={setPomodoroState}
+                />
               </div>
               <div>
-                <label htmlFor="shortBreak">short break</label>
-                <select name="shortBreak" id="shortBreak">
-                  {generateIncrementsOfN(50).map((num) => (
-                    <option value={num}>{num}</option>
-                  ))}
-                </select>
+                <CustomNumberInput
+                  name="shortBreak"
+                  text="short break"
+                  value={shortBreakState}
+                  handleOnChange={setShortBreakState}
+                />
               </div>
               <div>
-                <label htmlFor="longBreak">long break</label>
-                <select name="longBreak" id="longBreak">
-                  {generateIncrementsOfN(50).map((num) => (
-                    <option value={num}>{num}</option>
-                  ))}
-                </select>
+                <CustomNumberInput
+                  name="longBreak"
+                  text="long break"
+                  value={longBreakState}
+                  handleOnChange={setLongBreakState}
+                />
               </div>
             </div>
           </div>
@@ -207,7 +190,7 @@ export default function Modal(props) {
           </div>
         </ContentWrapperStyles>
         <ApplyButtonContainer>
-          <ApplyButton>Apply</ApplyButton>
+          <ApplyButton onClick={applySettingChanges}>Apply</ApplyButton>
         </ApplyButtonContainer>
       </ReactModal>
     </div>

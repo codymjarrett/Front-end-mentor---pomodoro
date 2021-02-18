@@ -14,6 +14,7 @@ import {
   POMODORO,
   SHORT_BREAK,
   SET_SELECTION,
+  SET_TIME_SETTINGS,
 } from "../../constants";
 
 const INITIAL_STATE = {
@@ -36,9 +37,11 @@ export const themeReducer = produce((draft = INITIAL_STATE, action) => {
     case SET_SELECTION:
       draft["selection"] = action.payload.selection;
       break;
-    case SET_LONG_BREAK:
-    case SET_POMODORO:
-    case SET_SHORT_BREAK:
+    case SET_TIME_SETTINGS:
+      const { pomodoro, short_break, long_break } = action.payload;
+      Object.keys(action.payload).forEach(
+        (key) => (draft[key] = Number(action.payload[key]))
+      );
       return;
 
     default:
