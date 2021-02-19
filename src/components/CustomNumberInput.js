@@ -8,6 +8,7 @@ import ArrowDownIcon from "../svg/ArrowDownIcon";
 const CustomInputContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 const CustomInputStyles = styled.input`
   -webkit-appearance: textfield;
@@ -46,7 +47,7 @@ const ArrowContainer = styled.div`
 
 const LabelStyles = styled.label`
   font-family: ${FONT_MAP[KUMBH_SANS]};
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--app-secondary-bk);
 `;

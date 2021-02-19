@@ -184,14 +184,20 @@ export default function Modal(props) {
           <div
             style={{
               padding: "2rem",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
             }}
           >
-            <Heading>FONT </Heading>
+            <Heading>FONT</Heading>
             <SelectionButton type="font" />
           </div>
           <div
             style={{
               padding: "2rem",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
             }}
           >
             <Heading>COLOR </Heading>
