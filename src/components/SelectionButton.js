@@ -20,6 +20,7 @@ const SelectionButtonStyles = styled.button`
   height: 40px;
   font-size: 15px;
   margin-right: 1rem;
+  background-color: #eff1fa;
 
   span {
     font-weight: ${({ font }) => {
@@ -49,9 +50,6 @@ export default function SelectionButton(props) {
       {type === "font"
         ? [KUMBH_SANS, ROBOTO_SLAB, SPACE_MONO].map((font, i) => (
             <SelectionButtonStyles
-              style={{
-                backgroundColor: `var(--app-grey)`,
-              }}
               selection={font}
               key={i}
               font={font}

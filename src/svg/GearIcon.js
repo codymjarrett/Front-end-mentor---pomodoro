@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const GearIconButton = styled.button`
   display: block;
@@ -17,3 +18,7 @@ export default function GearIcon(props) {
     </GearIconButton>
   );
 }
+
+GearIcon.propTypes = {
+  toggleModal: PropTypes.func.isRequired,
+};

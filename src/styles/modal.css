@@ -15,5 +15,5 @@
   top: 50%;
   border-radius: 25px;
   transform: translate(-50%, -50%);
-  background: hsl(229, 52%, 96%);
+  background: var(--app-primary-white);
 }

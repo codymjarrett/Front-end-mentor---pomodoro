@@ -30,6 +30,15 @@ const ApplyButton = styled.button`
   font-family: ${FONT_MAP[KUMBH_SANS]};
 `;
 
+const Heading = styled.h2`
+  font-family: ${FONT_MAP[KUMBH_SANS]};
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 4.23px;
+`;
+
 export default function Modal(props) {
   const { isOpen, toggleModal } = props;
   const [pomodoroState, setPomodoroState] = useState(25);
@@ -143,10 +152,10 @@ export default function Modal(props) {
             <h1>Settings</h1>
             <button onClick={toggleModal}>X</button>
           </div>
-          <div>
-            <h2>TIME (MINUTES)</h2>
+          <div style={{ padding: "2rem" }}>
+            <Heading>TIME (MINUTES)</Heading>
             <div>
-              <div>
+              <div style={{ marginBottom: "1rem" }}>
                 <CustomNumberInput
                   name="pomodoro"
                   text="pomodoro"
@@ -154,7 +163,7 @@ export default function Modal(props) {
                   handleOnChange={setPomodoroState}
                 />
               </div>
-              <div>
+              <div style={{ marginBottom: "1rem" }}>
                 <CustomNumberInput
                   name="shortBreak"
                   text="short break"
@@ -162,7 +171,7 @@ export default function Modal(props) {
                   handleOnChange={setShortBreakState}
                 />
               </div>
-              <div>
+              <div style={{ marginBottom: "1rem" }}>
                 <CustomNumberInput
                   name="longBreak"
                   text="long break"
@@ -177,7 +186,7 @@ export default function Modal(props) {
               padding: "2rem",
             }}
           >
-            <h2>FONT </h2>
+            <Heading>FONT </Heading>
             <SelectionButton type="font" />
           </div>
           <div
@@ -185,7 +194,7 @@ export default function Modal(props) {
               padding: "2rem",
             }}
           >
-            <h2>COLOR </h2>
+            <Heading>COLOR </Heading>
             <SelectionButton type="color" />
           </div>
         </ContentWrapperStyles>
