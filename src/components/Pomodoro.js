@@ -32,6 +32,7 @@ const TimerStyles = styled.div`
   font-size: 100px;
   font-family: ${({ font }) => FONT_MAP[font]};
   color: var(--app-primary-white);
+  letter-spacing: -3px;
 `;
 const TimerWrapper = styled.div`
   height: 100%;
@@ -72,7 +73,9 @@ export default function Pomodoro() {
         <ProgressBar />
         <TimerWrapper>
           <TimerStyles font={font}>{convertMstoMins(currentTimer)}</TimerStyles>
-          <TimerButton color={color}>START</TimerButton>
+          <TimerButton color={color} font={font}>
+            START
+          </TimerButton>
         </TimerWrapper>
       </PomodoroStyles>
     </OuterPomodoroStyles>
