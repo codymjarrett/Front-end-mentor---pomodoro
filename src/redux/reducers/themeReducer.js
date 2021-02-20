@@ -15,7 +15,11 @@ import {
   SHORT_BREAK,
   SET_SELECTION,
   SET_TIME_SETTINGS,
-  RUN_TIMER,
+  TOGGLE_TIMER,
+  PAUSE_TIMER,
+  DECREMENT_TIMER,
+  COMPLETE_TIMER,
+  INITIATE_TIMER,
 } from "../../constants";
 
 import { convertMinsToMs } from "../../utils";
@@ -48,15 +52,30 @@ export const themeReducer = produce((draft = INITIAL_STATE, action) => {
       const { pomodoro, short_break, long_break } = action.payload;
       Object.keys(action.payload).forEach((key) => {
         draft[key] = Number(action.payload[key]);
+        // don't restart timer if setting changes
         if (key === draft["selection"]) {
-          draft["currentTimer"] = convertMinsToMs(Number(draft[key]));
+          if (draft["timerRunning"]) {
+            // make sure that the currently selected timer remains the same
+            draft["currentTimer"] = draft["currentTimer"];
+          } else {
+            // make sure to update the currently selected timer with the new value
+            draft["currentTimer"] = convertMinsToMs(Number(draft[key]));
+          }
         }
       });
       break;
-    case RUN_TIMER:
+    case TOGGLE_TIMER:
       draft["timerRunning"] = action.payload.timerRunning;
       break;
-
+    case DECREMENT_TIMER:
+      draft["currentTimer"] -= 1000;
+      break;
+    case PAUSE_TIMER:
+      draft["timerRunning"] = false;
+      break;
+    case COMPLETE_TIMER:
+      draft["timerComplete"] = true;
+      break;
     default:
       return draft;
   }

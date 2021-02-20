@@ -8,7 +8,7 @@ import {
   SET_COLOR,
   SET_FONT,
 } from "../constants.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import SelectionButton from "./SelectionButton";
 import CustomNumberInput from "./CustomNumberInput";
@@ -60,6 +60,11 @@ export default function Modal(props) {
   const [font, setFont] = useState("");
   const dispatch = useDispatch();
 
+  const { font: currentFont, color: currentColor } = useSelector((state) => ({
+    font: state.theme.font,
+    color: state.theme.color,
+  }));
+
   const applySettingChanges = () => {
     dispatch({
       type: SET_TIME_SETTINGS,
@@ -72,13 +77,13 @@ export default function Modal(props) {
     dispatch({
       type: SET_COLOR,
       payload: {
-        color,
+        color: color || currentColor,
       },
     });
     dispatch({
       type: SET_FONT,
       payload: {
-        font,
+        font: font || currentFont,
       },
     });
     toggleModal();

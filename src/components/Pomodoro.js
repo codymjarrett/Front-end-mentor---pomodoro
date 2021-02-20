@@ -1,7 +1,15 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
-import { FONT_MAP, RUN_TIMER } from "../constants";
+import {
+  FONT_MAP,
+  TOGGLE_TIMER,
+  COMPLETE_TIMER,
+  DECREMENT_TIMER,
+  INITIATE_TIMER,
+  PAUSE_TIMER,
+} from "../constants";
 import { convertMstoMins } from "../utils";
 
 import ProgressBar from "./ProgressBar";
@@ -85,6 +93,35 @@ export default function Pomodoro() {
       return "START";
     }
   };
+
+  useEffect(() => {
+    if (timerRunning) {
+      let myInterval = setInterval(() => {
+        if (currentTimer > 0) {
+          dispatch({ type: DECREMENT_TIMER });
+        }
+        if (currentTimer === 0) {
+          clearInterval(myInterval);
+          dispatch({ type: COMPLETE_TIMER });
+          return;
+        }
+      }, 1000);
+
+      return () => {
+        clearInterval(myInterval);
+      };
+    }
+  }, [currentTimer, timerRunning, timerComplete]);
+
+  const handleInitiateTimer = () => {
+    if (!timerRunning) {
+      dispatch({ type: TOGGLE_TIMER, payload: { timerRunning: true } });
+    }
+    if (timerRunning) {
+      dispatch({ type: PAUSE_TIMER });
+    }
+  };
+
   return (
     <OuterPomodoroStyles>
       <PomodoroStyles>
@@ -94,12 +131,13 @@ export default function Pomodoro() {
           <TimerButton
             color={color}
             font={font}
-            onClick={() =>
+            onClick={() => {
               dispatch({
-                type: RUN_TIMER,
+                type: TOGGLE_TIMER,
                 payload: { timerRunning: timerRunning ? false : true },
-              })
-            }
+              });
+              handleInitiateTimer();
+            }}
           >
             {timerButtonText()}
           </TimerButton>
