@@ -20,11 +20,17 @@ export const SET_TIME_SETTINGS = "SET_TIME_SETTINGS";
 // selections
 
 export const POMODORO = "pomodoro";
-export const SHORT_BREAK = "short break";
-export const LONG_BREAK = "long break";
+export const SHORT_BREAK = "short_break";
+export const LONG_BREAK = "long_break";
 
 export const FONT_MAP = {
   [KUMBH_SANS]: "Kumbh Sans, sans-serif",
   [ROBOTO_SLAB]: "Roboto Slab, serif",
   [SPACE_MONO]: "Space Mono, monospace",
+};
+
+export const SELECTION_MAP = {
+  pomodoro: "pomodoro",
+  short_break: "short break",
+  long_break: "long break",
 };

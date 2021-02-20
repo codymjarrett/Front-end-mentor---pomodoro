@@ -2,8 +2,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { FONT_MAP, KUMBH_SANS, SET_TIME_SETTINGS } from "../constants.js";
 
-import ArrowUpIcon from "../svg/ArrowUpIcon";
-import ArrowDownIcon from "../svg/ArrowDownIcon";
+import SVGIcon from "../svg/SVGIcon";
 
 const CustomInputContainer = styled.div`
   display: flex;
@@ -77,8 +76,8 @@ export default function CustomNumberInput(props) {
           name={name}
         />
         <ArrowContainer>
-          <ArrowUpIcon onclick={handleStepUp} />
-          <ArrowDownIcon onclick={handleStepDown} />
+          <SVGIcon onclick={handleStepUp} name="arrowUp" />
+          <SVGIcon onclick={handleStepDown} name="arrowDown" />
         </ArrowContainer>
       </CustomInputWrapper>
     </CustomInputContainer>

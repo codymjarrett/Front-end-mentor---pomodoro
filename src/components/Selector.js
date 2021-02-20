@@ -7,6 +7,7 @@ import {
   SHORT_BREAK,
   SET_SELECTION,
   FONT_MAP,
+  SELECTION_MAP,
 } from "../constants";
 
 const SelectorContainer = styled.div`
@@ -63,7 +64,7 @@ export default function Selector(props) {
             })
           }
         >
-          {selectionText}
+          {SELECTION_MAP[selectionText]}
         </TextStyles>
       ))}
     </SelectorContainer>

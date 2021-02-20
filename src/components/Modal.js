@@ -6,9 +6,15 @@ import { useDispatch } from "react-redux";
 
 import SelectionButton from "./SelectionButton";
 import CustomNumberInput from "./CustomNumberInput";
+import SVGIcon from "../svg/SVGIcon";
 
 // styles for modal ugh
 import "../styles/modal.css";
+
+const ModalHeader = styled.h1`
+  font-family: ${FONT_MAP[KUMBH_SANS]};
+  font-size: 20px;
+`;
 
 const ContentWrapperStyles = styled.div`
   position: relative;
@@ -55,6 +61,7 @@ export default function Modal(props) {
         long_break: longBreakState,
       },
     });
+    toggleModal();
   };
 
   return (
@@ -149,8 +156,8 @@ export default function Modal(props) {
               borderBottom: "1px solid black",
             }}
           >
-            <h1>Settings</h1>
-            <button onClick={toggleModal}>X</button>
+            <ModalHeader>Settings</ModalHeader>
+            <SVGIcon name="close" onclick={toggleModal} />
           </div>
           <div style={{ padding: "2rem" }}>
             <Heading>TIME (MINUTES)</Heading>

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Selector from "./components/Selector";
 import Pomodoro from "./components/Pomodoro";
 import Modal from "./components/Modal";
-import GearIcon from "./svg/GearIcon";
+import SVGIcon from "./svg/SVGIcon";
 
 const AppStyles = styled.div`
   background-color: var(--app-primary-bk);
@@ -37,7 +37,7 @@ function App() {
           <Pomodoro />
         </div>
         <div style={{ marginTop: "4rem" }}>
-          <GearIcon toggleModal={toggleModal} />
+          <SVGIcon onclick={toggleModal} name="gear" />
         </div>
       </div>
       <Modal isOpen={modalOpen} toggleModal={toggleModal} />
