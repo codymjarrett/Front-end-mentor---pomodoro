@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
-import { FONT_MAP } from "../constants";
+import { FONT_MAP, RUN_TIMER } from "../constants";
 import { convertMstoMins } from "../utils";
 
 import ProgressBar from "./ProgressBar";
@@ -61,20 +61,47 @@ const TimerButton = styled.button`
 export default function Pomodoro() {
   const dispatch = useDispatch();
 
-  const { font, color, currentTimer } = useSelector((state) => ({
+  const {
+    font,
+    color,
+    currentTimer,
+    timerRunning,
+    timerComplete,
+  } = useSelector((state) => ({
     font: state.theme.font,
     color: state.theme.color,
     currentTimer: state.theme.currentTimer,
+    timerRunning: state.theme.timerRunning,
+    timerComplete: state.theme.timerComplete,
   }));
 
+  const timerButtonText = () => {
+    if (timerComplete) {
+      return "RESTART";
+    }
+    if (timerRunning) {
+      return "PAUSE";
+    } else {
+      return "START";
+    }
+  };
   return (
     <OuterPomodoroStyles>
       <PomodoroStyles>
         <ProgressBar />
         <TimerWrapper>
           <TimerStyles font={font}>{convertMstoMins(currentTimer)}</TimerStyles>
-          <TimerButton color={color} font={font}>
-            START
+          <TimerButton
+            color={color}
+            font={font}
+            onClick={() =>
+              dispatch({
+                type: RUN_TIMER,
+                payload: { timerRunning: timerRunning ? false : true },
+              })
+            }
+          >
+            {timerButtonText()}
           </TimerButton>
         </TimerWrapper>
       </PomodoroStyles>

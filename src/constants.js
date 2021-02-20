@@ -23,6 +23,12 @@ export const POMODORO = "pomodoro";
 export const SHORT_BREAK = "short_break";
 export const LONG_BREAK = "long_break";
 
+// timers
+
+export const RUN_TIMER = "RUN_TIMER";
+
+// maps
+
 export const FONT_MAP = {
   [KUMBH_SANS]: "Kumbh Sans, sans-serif",
   [ROBOTO_SLAB]: "Roboto Slab, serif",

@@ -15,6 +15,7 @@ import {
   SHORT_BREAK,
   SET_SELECTION,
   SET_TIME_SETTINGS,
+  RUN_TIMER,
 } from "../../constants";
 
 import { convertMinsToMs } from "../../utils";
@@ -27,6 +28,8 @@ const INITIAL_STATE = {
   color: APP_RED,
   selection: POMODORO,
   currentTimer: convertMinsToMs(25),
+  timerRunning: false,
+  timerComplete: false,
 };
 
 export const themeReducer = produce((draft = INITIAL_STATE, action) => {
@@ -49,7 +52,10 @@ export const themeReducer = produce((draft = INITIAL_STATE, action) => {
           draft["currentTimer"] = convertMinsToMs(Number(draft[key]));
         }
       });
-      return;
+      break;
+    case RUN_TIMER:
+      draft["timerRunning"] = action.payload.timerRunning;
+      break;
 
     default:
       return draft;
