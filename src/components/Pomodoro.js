@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
 import { FONT_MAP } from "../constants";
+import { convertMstoMins } from "../utils";
+
 import ProgressBar from "./ProgressBar";
 
 const PomodoroStyles = styled.div`
@@ -12,6 +14,7 @@ const PomodoroStyles = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 const OuterPomodoroStyles = styled.div`
   width: 406px;
@@ -25,11 +28,33 @@ const OuterPomodoroStyles = styled.div`
     -5px 0 34px -29px var(--app-grey);
 `;
 
-const TimerStyles = styled.span`
-  position: absolute;
-  font-size: 80px;
+const TimerStyles = styled.div`
+  font-size: 100px;
   font-family: ${({ font }) => FONT_MAP[font]};
   color: var(--app-primary-white);
+`;
+const TimerWrapper = styled.div`
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const TimerButton = styled.button`
+  font-family: ${({ font }) => FONT_MAP[font]};
+  color: ${({ color }) => color};
+  font-weight: 700;
+  font-size: 16px;
+  display: block;
+  background: transparent;
+  border: none;
+  letter-spacing: 15px;
+  position: absolute;
+  bottom: 100px;
 `;
 
 export default function Pomodoro() {
@@ -45,7 +70,10 @@ export default function Pomodoro() {
     <OuterPomodoroStyles>
       <PomodoroStyles>
         <ProgressBar />
-        <TimerStyles font={font}>{currentTimer}</TimerStyles>
+        <TimerWrapper>
+          <TimerStyles font={font}>{convertMstoMins(currentTimer)}</TimerStyles>
+          <TimerButton color={color}>START</TimerButton>
+        </TimerWrapper>
       </PomodoroStyles>
     </OuterPomodoroStyles>
   );

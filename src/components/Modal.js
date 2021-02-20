@@ -1,7 +1,13 @@
 import { useState } from "react";
 import ReactModal from "react-modal";
 import styled from "styled-components";
-import { FONT_MAP, KUMBH_SANS, SET_TIME_SETTINGS } from "../constants.js";
+import {
+  FONT_MAP,
+  KUMBH_SANS,
+  SET_TIME_SETTINGS,
+  SET_COLOR,
+  SET_FONT,
+} from "../constants.js";
 import { useDispatch } from "react-redux";
 
 import SelectionButton from "./SelectionButton";
@@ -50,6 +56,8 @@ export default function Modal(props) {
   const [pomodoroState, setPomodoroState] = useState(25);
   const [shortBreakState, setShortBreakState] = useState(5);
   const [longBreakState, setLongBreakState] = useState(15);
+  const [color, setColor] = useState("");
+  const [font, setFont] = useState("");
   const dispatch = useDispatch();
 
   const applySettingChanges = () => {
@@ -59,6 +67,18 @@ export default function Modal(props) {
         pomodoro: pomodoroState,
         short_break: shortBreakState,
         long_break: longBreakState,
+      },
+    });
+    dispatch({
+      type: SET_COLOR,
+      payload: {
+        color,
+      },
+    });
+    dispatch({
+      type: SET_FONT,
+      payload: {
+        font,
       },
     });
     toggleModal();
@@ -197,7 +217,7 @@ export default function Modal(props) {
             }}
           >
             <Heading>FONT</Heading>
-            <SelectionButton type="font" />
+            <SelectionButton type="font" handleOnClick={setFont} />
           </div>
           <div
             style={{
@@ -208,7 +228,7 @@ export default function Modal(props) {
             }}
           >
             <Heading>COLOR </Heading>
-            <SelectionButton type="color" />
+            <SelectionButton type="color" handleOnClick={setColor} />
           </div>
         </ContentWrapperStyles>
         <ApplyButtonContainer>

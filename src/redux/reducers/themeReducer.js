@@ -17,7 +17,7 @@ import {
   SET_TIME_SETTINGS,
 } from "../../constants";
 
-import { convertMinsToMs, convertMstoMins } from "../../utils";
+import { convertMinsToMs } from "../../utils";
 
 const INITIAL_STATE = {
   pomodoro: 25,
@@ -26,7 +26,7 @@ const INITIAL_STATE = {
   font: KUMBH_SANS,
   color: APP_RED,
   selection: POMODORO,
-  currentTimer: convertMstoMins(convertMinsToMs(25)),
+  currentTimer: convertMinsToMs(25),
 };
 
 export const themeReducer = produce((draft = INITIAL_STATE, action) => {
@@ -39,18 +39,14 @@ export const themeReducer = produce((draft = INITIAL_STATE, action) => {
       break;
     case SET_SELECTION:
       draft["selection"] = action.payload.selection;
-      draft["currentTimer"] = convertMstoMins(
-        convertMinsToMs(Number(draft[draft.selection]))
-      );
+      draft["currentTimer"] = convertMinsToMs(Number(draft[draft.selection]));
       break;
     case SET_TIME_SETTINGS:
       const { pomodoro, short_break, long_break } = action.payload;
       Object.keys(action.payload).forEach((key) => {
         draft[key] = Number(action.payload[key]);
         if (key === draft["selection"]) {
-          draft["currentTimer"] = convertMstoMins(
-            convertMinsToMs(Number(draft[key]))
-          );
+          draft["currentTimer"] = convertMinsToMs(Number(draft[key]));
         }
       });
       return;

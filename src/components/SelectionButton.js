@@ -41,7 +41,7 @@ const SelectionButtonStyles = styled.button`
 `;
 
 export default function SelectionButton(props) {
-  const { type } = props;
+  const { type, handleOnClick } = props;
 
   const dispatch = useDispatch();
 
@@ -53,7 +53,7 @@ export default function SelectionButton(props) {
               selection={font}
               key={i}
               font={font}
-              // onClick={() => dispatch({ type: SET_FONT, payload: { font } })}
+              onClick={() => handleOnClick(font)}
             >
               <span style={{ fontFamily: FONT_MAP[font] }}>Aa</span>
             </SelectionButtonStyles>
@@ -63,7 +63,7 @@ export default function SelectionButton(props) {
               style={{ backgroundColor: color }}
               selection={color}
               key={i}
-              // onClick={() => dispatch({ type: SET_COLOR, payload: { color } })}
+              onClick={() => handleOnClick(color)}
             ></SelectionButtonStyles>
           ))}
     </div>
@@ -72,4 +72,5 @@ export default function SelectionButton(props) {
 
 SelectionButton.propTypes = {
   type: PropTypes.oneOf(["color", "font"]).isRequired,
+  handleOnClick: PropTypes.func,
 };
