@@ -159,8 +159,9 @@ export default function Modal(props) {
     <div>
       <ReactModal
         isOpen={isOpen}
+        onRequestClose={toggleModal}
         closeTimeoutMS={0}
-        contentLabel={"Example Modal"}
+        contentLabel={"Settings"}
         portalClassName={"ReactModalPortal"}
         overlayClassName={"ReactModal__Overlay"}
         id={"modal_content"}
@@ -168,10 +169,10 @@ export default function Modal(props) {
         bodyOpenClassName={"ReactModal__Body--open"}
         htmlOpenClassName={"ReactModal__Html--open"}
         ariaHideApp={true}
-        shouldFocusAfterRender={true}
+        shouldFocusAfterRender={false}
         shouldCloseOnOverlayClick={true}
         shouldCloseOnEsc={true}
-        shouldReturnFocusAfterClose={true}
+        shouldReturnFocusAfterClose={false}
         role={"dialog"}
         preventScroll={false}
         parentSelector={() => document.querySelector("#root")}
