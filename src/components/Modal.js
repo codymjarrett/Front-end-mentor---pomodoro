@@ -56,8 +56,8 @@ export default function Modal(props) {
   const [pomodoroState, setPomodoroState] = useState(25);
   const [shortBreakState, setShortBreakState] = useState(5);
   const [longBreakState, setLongBreakState] = useState(15);
-  const [color, setColor] = useState("");
-  const [font, setFont] = useState("");
+  const [localColorState, setLocalColorState] = useState("");
+  const [localFontState, setLocalFontState] = useState("");
   const dispatch = useDispatch();
 
   const { font: currentFont, color: currentColor } = useSelector((state) => ({
@@ -77,13 +77,13 @@ export default function Modal(props) {
     dispatch({
       type: SET_COLOR,
       payload: {
-        color: color || currentColor,
+        color: localColorState || currentColor,
       },
     });
     dispatch({
       type: SET_FONT,
       payload: {
-        font: font || currentFont,
+        font: localFontState || currentFont,
       },
     });
     toggleModal();
@@ -222,7 +222,11 @@ export default function Modal(props) {
             }}
           >
             <Heading>FONT</Heading>
-            <SelectionButton type="font" handleOnClick={setFont} />
+            <SelectionButton
+              type="font"
+              handleOnClick={setLocalFontState}
+              state={localFontState}
+            />
           </div>
           <div
             style={{
@@ -233,7 +237,11 @@ export default function Modal(props) {
             }}
           >
             <Heading>COLOR </Heading>
-            <SelectionButton type="color" handleOnClick={setColor} />
+            <SelectionButton
+              type="color"
+              handleOnClick={setLocalColorState}
+              state={localColorState}
+            />
           </div>
         </ContentWrapperStyles>
         <ApplyButtonContainer>

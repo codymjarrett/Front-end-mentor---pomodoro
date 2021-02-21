@@ -32,6 +32,7 @@ const INITIAL_STATE = {
   color: APP_RED,
   selection: POMODORO,
   currentTimer: convertMinsToMs(25),
+  currentTimerInit: convertMinsToMs(25),
   timerRunning: false,
   timerComplete: false,
 };
@@ -47,6 +48,9 @@ export const themeReducer = produce((draft = INITIAL_STATE, action) => {
     case SET_SELECTION:
       draft["selection"] = action.payload.selection;
       draft["currentTimer"] = convertMinsToMs(Number(draft[draft.selection]));
+      draft["currentTimerInit"] = convertMinsToMs(
+        Number(draft[draft.selection])
+      );
       break;
     case SET_TIME_SETTINGS:
       const { pomodoro, short_break, long_break } = action.payload;

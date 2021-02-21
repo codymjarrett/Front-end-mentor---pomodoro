@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
@@ -26,12 +26,12 @@ const TextStyles = styled.button`
   display: block;
   padding: 0 2rem;
   transition: ease-in 200ms all;
-  background-color: ${({ color, selection, text }) => {
-    if (selection === text) {
-      return color;
-    }
-    return "transparent";
-  }};
+
+  ${({ color, selection, text }) => css`
+    background-color: ${selection === text ? color : "transparent"};
+    color: ${selection === text ? `var(--app-primary-bk)` : `var(--app-grey)`};
+  `}
+
   border-radius: 25px;
 
   &:hover {
