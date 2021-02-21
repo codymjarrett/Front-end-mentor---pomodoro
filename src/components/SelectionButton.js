@@ -72,11 +72,6 @@ export default function SelectionButton(props) {
   const { type, handleOnClick, state } = props;
 
   const dispatch = useDispatch();
-  // const { font: currentAppFont, selection, color } = useSelector((state) => ({
-  //   font: state.theme.font,
-  //   selection: state.theme.selection,
-  //   color: state.theme.color,
-  // }));
 
   return (
     <div style={{ display: "flex" }}>
@@ -109,4 +104,12 @@ export default function SelectionButton(props) {
 SelectionButton.propTypes = {
   type: PropTypes.oneOf(["color", "font"]).isRequired,
   handleOnClick: PropTypes.func,
+  state: PropTypes.oneOf([
+    SPACE_MONO,
+    KUMBH_SANS,
+    ROBOTO_SLAB,
+    APP_RED,
+    APP_TEAL,
+    APP_PURPLE,
+  ]),
 };

@@ -9,11 +9,18 @@
 
 .ReactModal__Overlay .ReactModal__Content {
   position: absolute;
-  width: 80%;
-  height: 80%;
+  width: 427px;
+  height: 75%;
   left: 50%;
-  top: 50%;
+  top: 46%;
   border-radius: 25px;
   transform: translate(-50%, -50%);
   background: var(--app-primary-white);
+}
+
+@media (min-width: 768px) {
+  .ReactModal__Overlay .ReactModal__Content {
+    width: 540px;
+    height: 550px;
+  }
 }

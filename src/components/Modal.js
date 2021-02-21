@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ReactModal from "react-modal";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   FONT_MAP,
   KUMBH_SANS,
@@ -47,8 +47,74 @@ const Heading = styled.h2`
   font-size: 14px;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 2rem;
+  margin: 1rem;
   letter-spacing: 4.23px;
+
+  @media (min-width: 768px) {
+    margin: 0;
+    text-align: left;
+
+    ${({ type }) =>
+      type === "time" &&
+      css`
+        margin: 1rem 0;
+      `};
+  }
+`;
+
+const ModalHeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  border-bottom: 1px solid #979797;
+`;
+
+const SelectorWrapperBase = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 0;
+  }
+`;
+
+const CustomNumberInputWrapper = styled.div``;
+
+const TimeSelectorsWrapper = styled(SelectorWrapperBase)`
+  @media (min-width: 768px) {
+    flex-direction: column;
+
+    ${CustomNumberInputWrapper} {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+`;
+
+const FontSelectorsWrapper = styled(SelectorWrapperBase)`
+  padding: 1.5rem 0;
+  border-top: 1px solid #979797;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    padding: 2.5rem 0;
+  }
+`;
+const ColorSelectorsWrapper = styled(SelectorWrapperBase)`
+  padding: 1.5rem 0;
+  border-top: 1px solid #979797;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    padding: 2.5rem 0;
+  }
+`;
+
+const Section = styled.div`
+  margin-bottom: 1rem;
 `;
 
 export default function Modal(props) {
@@ -61,8 +127,8 @@ export default function Modal(props) {
   const dispatch = useDispatch();
 
   const { font: currentFont, color: currentColor } = useSelector((state) => ({
-    font: state.theme.font,
-    color: state.theme.color,
+    font: state.app.font,
+    color: state.app.color,
   }));
 
   const applySettingChanges = () => {
@@ -96,152 +162,75 @@ export default function Modal(props) {
         closeTimeoutMS={0}
         contentLabel={"Example Modal"}
         portalClassName={"ReactModalPortal"}
-        overlayClassName={
-          "ReactModal__Overlay"
-          /* String className to be applied to the overlay.
-         See the `Styles` section for more details. */
-        }
-        id={
-          "modal_content"
-          /* String id to be applied to the content div. */
-        }
-        className={
-          "ReactModal__Content"
-          /* String className to be applied to the modal content.
-         See the `Styles` section for more details. */
-        }
-        bodyOpenClassName={
-          "ReactModal__Body--open"
-          /* String className to be applied to the document.body
-         (must be a constant string).
-         This attribute when set as `null` doesn't add any class
-         to document.body.
-         See the `Styles` section for more details. */
-        }
-        htmlOpenClassName={
-          "ReactModal__Html--open"
-          /* String className to be applied to the document.html
-         (must be a constant string).
-         This attribute is `null` by default.
-         See the `Styles` section for more details. */
-        }
-        ariaHideApp={
-          true
-          /* Boolean indicating if the appElement should be hidden */
-        }
-        shouldFocusAfterRender={
-          true
-          /* Boolean indicating if the modal should be focused after render. */
-        }
-        shouldCloseOnOverlayClick={
-          true
-          /* Boolean indicating if the overlay should close the modal */
-        }
-        shouldCloseOnEsc={
-          true
-          /* Boolean indicating if pressing the esc key should close the modal
-         Note: By disabling the esc key from closing the modal
-         you may introduce an accessibility issue. */
-        }
-        shouldReturnFocusAfterClose={
-          true
-          /* Boolean indicating if the modal should restore focus to the element
-         that had focus prior to its display. */
-        }
-        role={
-          "dialog"
-          /* String indicating the role of the modal, allowing the 'dialog' role
-         to be applied if desired.
-         This attribute is `dialog` by default. */
-        }
-        preventScroll={
-          false
-          /* Boolean indicating if the modal should use the preventScroll flag when
-         restoring focus to the element that had focus prior to its display. */
-        }
+        overlayClassName={"ReactModal__Overlay"}
+        id={"modal_content"}
+        className={"ReactModal__Content"}
+        bodyOpenClassName={"ReactModal__Body--open"}
+        htmlOpenClassName={"ReactModal__Html--open"}
+        ariaHideApp={true}
+        shouldFocusAfterRender={true}
+        shouldCloseOnOverlayClick={true}
+        shouldCloseOnEsc={true}
+        shouldReturnFocusAfterClose={true}
+        role={"dialog"}
+        preventScroll={false}
         parentSelector={() => document.querySelector("#root")}
-        aria={
-          {
-            labelledby: "heading",
-            describedby: "full_description",
-          }
-          /* Additional aria attributes (optional). */
-        }
-        data={
-          { background: "green" }
-          /* Additional data attributes (optional). */
-        }
+        aria={{
+          labelledby: "heading",
+          describedby: "full_description",
+        }}
       >
         <ContentWrapperStyles>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              padding: "2rem",
-              borderBottom: "1px solid black",
-            }}
-          >
+          <ModalHeaderWrapper>
             <ModalHeader>Settings</ModalHeader>
             <SVGIcon name="close" onclick={toggleModal} />
-          </div>
-          <div style={{ padding: "2rem" }}>
-            <Heading>TIME (MINUTES)</Heading>
-            <div>
-              <div style={{ marginBottom: "1rem" }}>
-                <CustomNumberInput
-                  name="pomodoro"
-                  text="pomodoro"
-                  value={pomodoroState}
-                  handleOnChange={setPomodoroState}
-                />
-              </div>
-              <div style={{ marginBottom: "1rem" }}>
-                <CustomNumberInput
-                  name="shortBreak"
-                  text="short break"
-                  value={shortBreakState}
-                  handleOnChange={setShortBreakState}
-                />
-              </div>
-              <div style={{ marginBottom: "1rem" }}>
-                <CustomNumberInput
-                  name="longBreak"
-                  text="long break"
-                  value={longBreakState}
-                  handleOnChange={setLongBreakState}
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            style={{
-              padding: "2rem",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Heading>FONT</Heading>
-            <SelectionButton
-              type="font"
-              handleOnClick={setLocalFontState}
-              state={localFontState}
-            />
-          </div>
-          <div
-            style={{
-              padding: "2rem",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Heading>COLOR </Heading>
-            <SelectionButton
-              type="color"
-              handleOnClick={setLocalColorState}
-              state={localColorState}
-            />
+          </ModalHeaderWrapper>
+          <div style={{ padding: "0 2rem" }}>
+            <TimeSelectorsWrapper>
+              <Heading type="time">TIME (MINUTES)</Heading>
+              <CustomNumberInputWrapper>
+                <Section>
+                  <CustomNumberInput
+                    name="pomodoro"
+                    text="pomodoro"
+                    value={pomodoroState}
+                    handleOnChange={setPomodoroState}
+                  />
+                </Section>
+                <Section>
+                  <CustomNumberInput
+                    name="shortBreak"
+                    text="short break"
+                    value={shortBreakState}
+                    handleOnChange={setShortBreakState}
+                  />
+                </Section>
+                <Section>
+                  <CustomNumberInput
+                    name="longBreak"
+                    text="long break"
+                    value={longBreakState}
+                    handleOnChange={setLongBreakState}
+                  />
+                </Section>
+              </CustomNumberInputWrapper>
+            </TimeSelectorsWrapper>
+            <FontSelectorsWrapper>
+              <Heading>FONT</Heading>
+              <SelectionButton
+                type="font"
+                handleOnClick={setLocalFontState}
+                state={localFontState}
+              />
+            </FontSelectorsWrapper>
+            <ColorSelectorsWrapper>
+              <Heading>COLOR</Heading>
+              <SelectionButton
+                type="color"
+                handleOnClick={setLocalColorState}
+                state={localColorState}
+              />
+            </ColorSelectorsWrapper>
           </div>
         </ContentWrapperStyles>
         <ApplyButtonContainer>

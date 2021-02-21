@@ -30,6 +30,7 @@ export const DECREMENT_TIMER = "DECREMENT_TIMER";
 export const COMPLETE_TIMER = "COMPLETE_TIMER";
 export const INITIATE_TIMER = "INITIATE_TIMER";
 export const PAUSE_TIMER = "PAUSE_TIMER";
+export const RESTART_TIMER = "RESTART_TIMER";
 
 // maps
 

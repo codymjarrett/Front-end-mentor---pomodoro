@@ -7,8 +7,8 @@ import {
   TOGGLE_TIMER,
   COMPLETE_TIMER,
   DECREMENT_TIMER,
-  INITIATE_TIMER,
   PAUSE_TIMER,
+  RESTART_TIMER,
 } from "../constants";
 import { convertMstoMins } from "../utils";
 
@@ -76,11 +76,11 @@ export default function Pomodoro() {
     timerRunning,
     timerComplete,
   } = useSelector((state) => ({
-    font: state.theme.font,
-    color: state.theme.color,
-    currentTimer: state.theme.currentTimer,
-    timerRunning: state.theme.timerRunning,
-    timerComplete: state.theme.timerComplete,
+    font: state.app.font,
+    color: state.app.color,
+    currentTimer: state.app.currentTimer,
+    timerRunning: state.app.timerRunning,
+    timerComplete: state.app.timerComplete,
   }));
 
   const timerButtonText = () => {
@@ -103,6 +103,8 @@ export default function Pomodoro() {
         if (currentTimer === 0) {
           clearInterval(myInterval);
           dispatch({ type: COMPLETE_TIMER });
+          dispatch({ type: TOGGLE_TIMER, payload: { timerRunning: false } });
+
           return;
         }
       }, 1000);
@@ -114,6 +116,9 @@ export default function Pomodoro() {
   }, [currentTimer, timerRunning, timerComplete]);
 
   const handleInitiateTimer = () => {
+    if (timerComplete) {
+      dispatch({ type: RESTART_TIMER });
+    }
     if (!timerRunning) {
       dispatch({ type: TOGGLE_TIMER, payload: { timerRunning: true } });
     }

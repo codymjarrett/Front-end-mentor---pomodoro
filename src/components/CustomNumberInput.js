@@ -8,6 +8,10 @@ const CustomInputContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
 `;
 const CustomInputStyles = styled.input`
   -webkit-appearance: textfield;
@@ -48,7 +52,13 @@ const LabelStyles = styled.label`
   font-family: ${FONT_MAP[KUMBH_SANS]};
   font-size: 14px;
   font-weight: 700;
-  color: var(--app-secondary-bk);
+  color: #1e213f;
+  opacity: 0.4;
+
+  @media (min-width: 768px) {
+    margin: 0.5rem 0;
+    display: block;
+  }
 `;
 export default function CustomNumberInput(props) {
   const { name, text, min = 5, max = 100, handleOnChange, value } = props;

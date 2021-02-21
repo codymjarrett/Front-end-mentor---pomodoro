@@ -20,6 +20,7 @@ import {
   DECREMENT_TIMER,
   COMPLETE_TIMER,
   INITIATE_TIMER,
+  RESTART_TIMER,
 } from "../../constants";
 
 import { convertMinsToMs } from "../../utils";
@@ -32,12 +33,13 @@ const INITIAL_STATE = {
   color: APP_RED,
   selection: POMODORO,
   currentTimer: convertMinsToMs(25),
+  // the initial timer (doesn't decrement)
   currentTimerInit: convertMinsToMs(25),
   timerRunning: false,
   timerComplete: false,
 };
 
-export const themeReducer = produce((draft = INITIAL_STATE, action) => {
+export const appReducer = produce((draft = INITIAL_STATE, action) => {
   switch (action.type) {
     case SET_COLOR:
       draft["color"] = action.payload.color;
@@ -79,6 +81,12 @@ export const themeReducer = produce((draft = INITIAL_STATE, action) => {
       break;
     case COMPLETE_TIMER:
       draft["timerComplete"] = true;
+      break;
+    case RESTART_TIMER:
+      draft["currentTimer"] = convertMinsToMs(draft[draft["selection"]]);
+      draft["timerRunning"] = true;
+      draft["timerComplete"] = false;
+
       break;
     default:
       return draft;

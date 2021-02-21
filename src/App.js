@@ -36,7 +36,7 @@ function App() {
         <div style={{ marginTop: "4rem" }}>
           <Pomodoro />
         </div>
-        <div style={{ marginTop: "4rem" }}>
+        <div style={{ marginTop: "5.5rem" }}>
           <SVGIcon onclick={toggleModal} name="gear" />
         </div>
       </div>

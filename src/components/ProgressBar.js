@@ -11,7 +11,7 @@ const ProgressBarStyles = styled.svg`
 `;
 
 const CircleStyles = styled.circle`
-  transition: all 800ms ease-in;
+  transition: all 500ms linear;
   ${({ dashoffset, color, circumference }) => css`
     stroke-dashoffset: ${dashoffset};
     stroke-width: 4;
@@ -21,14 +21,11 @@ const CircleStyles = styled.circle`
 `;
 
 export default function ProgressBar() {
-  const { color, selection, currentTimer, currentTimerInit } = useSelector(
-    (state) => ({
-      color: state.theme.color,
-      selection: state.theme.selection,
-      currentTimer: state.theme.currentTimer,
-      currentTimerInit: state.theme.currentTimerInit,
-    })
-  );
+  const { color, currentTimer, currentTimerInit } = useSelector((state) => ({
+    color: state.app.color,
+    currentTimer: state.app.currentTimer,
+    currentTimerInit: state.app.currentTimerInit,
+  }));
 
   const [value, setValue] = useState();
 
@@ -68,21 +65,3 @@ export default function ProgressBar() {
     </div>
   );
 }
-
-/*
-var progressValue = document.querySelector('.progress__value');
-
-
-var RADIUS = 54;
-var CIRCUMFERENCE = 2 * Math.PI * RADIUS;
-const value = 75
-
-var progress = value / 100;
-var dashoffset = CIRCUMFERENCE * (1 - progress);
-
-progressValue.style.strokeDashoffset = dashoffset;
-progressValue.style.strokeDasharray = CIRCUMFERENCE;
-
-// based on the time left from the start time the percentage of time is the value
-
-*/

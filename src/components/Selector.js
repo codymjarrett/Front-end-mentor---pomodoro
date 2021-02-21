@@ -39,11 +39,11 @@ const TextStyles = styled.button`
   }
 `;
 
-export default function Selector(props) {
+export default function Selector() {
   const { font, selection, color } = useSelector((state) => ({
-    font: state.theme.font,
-    selection: state.theme.selection,
-    color: state.theme.color,
+    font: state.app.font,
+    selection: state.app.selection,
+    color: state.app.color,
   }));
 
   const dispatch = useDispatch();
