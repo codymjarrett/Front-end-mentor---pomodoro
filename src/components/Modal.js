@@ -44,8 +44,7 @@ const ApplyButton = styled.button`
 
 const Heading = styled.h2`
   font-family: ${FONT_MAP[KUMBH_SANS]};
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 11px;
   text-align: center;
   margin: 1rem;
   letter-spacing: 4.23px;
@@ -65,14 +64,22 @@ const Heading = styled.h2`
 const ModalHeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 1.3rem;
   border-bottom: 1px solid #979797;
+
+  @media (min-width: 375px) {
+    padding: 2rem;
+  }
 `;
 
 const SelectorWrapperBase = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
+
+  @media (min-width: 375px) {
+    padding: 2rem 0;
+  }
 
   @media (min-width: 768px) {
     flex-direction: row;
@@ -84,6 +91,8 @@ const SelectorWrapperBase = styled.div`
 const CustomNumberInputWrapper = styled.div``;
 
 const TimeSelectorsWrapper = styled(SelectorWrapperBase)`
+  padding: 0.5rem 0;
+
   @media (min-width: 768px) {
     flex-direction: column;
 
@@ -95,16 +104,19 @@ const TimeSelectorsWrapper = styled(SelectorWrapperBase)`
 `;
 
 const FontSelectorsWrapper = styled(SelectorWrapperBase)`
-  padding: 1.5rem 0;
+  padding: 0.5rem 0;
   border-top: 1px solid #979797;
   align-items: center;
 
+  @media (min-width: 375px) {
+    padding: 2rem 0;
+  }
   @media (min-width: 768px) {
     padding: 2.5rem 0;
   }
 `;
 const ColorSelectorsWrapper = styled(SelectorWrapperBase)`
-  padding: 1.5rem 0;
+  padding: 0.5rem 0;
   border-top: 1px solid #979797;
   align-items: center;
 

@@ -50,7 +50,7 @@ const ArrowContainer = styled.div`
 
 const LabelStyles = styled.label`
   font-family: ${FONT_MAP[KUMBH_SANS]};
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
   color: #1e213f;
   opacity: 0.4;

@@ -9,8 +9,8 @@
 
 .ReactModal__Overlay .ReactModal__Content {
   position: absolute;
-  width: 350px;
-  height: 75%;
+  width: 90%;
+  height: 90%;
   left: 50%;
   top: 47%;
   border-radius: 25px;
