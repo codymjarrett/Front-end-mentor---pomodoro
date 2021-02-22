@@ -42,6 +42,10 @@ const TextStyles = styled.button`
   &:hover {
     color: var(--app-primary-white);
   }
+
+  @media (min-width: 768px) {
+    padding: 0 2rem;
+  }
 `;
 
 export default function Selector() {
