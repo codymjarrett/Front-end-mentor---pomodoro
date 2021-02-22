@@ -15,18 +15,24 @@ import { convertMstoMins } from "../utils";
 import ProgressBar from "./ProgressBar";
 
 const PomodoroStyles = styled.div`
-  width: 366px;
-  height: 366px;
+  width: 267px;
+  height: 267px;
   border-radius: 100%;
   background-color: var(--app-secondary-bk);
   display: flex;
   justify-content: center;
   align-items: center;
+  align-items: center;
   position: relative;
+
+  @media (min-width: 768px) {
+    width: 366px;
+    height: 366px;
+  }
 `;
 const OuterPomodoroStyles = styled.div`
-  width: 406px;
-  height: 406px;
+  width: 300px;
+  height: 300px;
   border-radius: 100%;
   background: linear-gradient(to left, #2e325a, #0e112a);
   display: flex;
@@ -34,13 +40,22 @@ const OuterPomodoroStyles = styled.div`
   align-items: center;
   box-shadow: 8px 5px 14px var(--app-secondary-bk),
     -5px 0 34px -29px var(--app-grey);
+
+  @media (min-width: 768px) {
+    width: 410px;
+    height: 410px;
+  }
 `;
 
 const TimerStyles = styled.div`
-  font-size: 100px;
+  font-size: 80px;
   font-family: ${({ font }) => FONT_MAP[font]};
   color: var(--app-primary-white);
   letter-spacing: -3px;
+
+  @media (min-width: 768px) {
+    font-size: 100px;
+  }
 `;
 const TimerWrapper = styled.div`
   height: 100%;
@@ -63,7 +78,7 @@ const TimerButton = styled.button`
   border: none;
   letter-spacing: 15px;
   position: absolute;
-  bottom: 100px;
+  bottom: 70px;
 `;
 
 export default function Pomodoro() {

@@ -9,10 +9,10 @@
 
 .ReactModal__Overlay .ReactModal__Content {
   position: absolute;
-  width: 427px;
+  width: 350px;
   height: 75%;
   left: 50%;
-  top: 46%;
+  top: 47%;
   border-radius: 25px;
   transform: translate(-50%, -50%);
   background: var(--app-primary-white);
@@ -22,5 +22,6 @@
   .ReactModal__Overlay .ReactModal__Content {
     width: 540px;
     height: 550px;
+    top: 44%;
   }
 }

@@ -3,7 +3,15 @@ import styled, { css } from "styled-components";
 import { useSelector } from "react-redux";
 
 const ProgressBarStyles = styled.svg`
+  width: 267px;
+  height: 267px;
   transform: rotate(-90deg);
+
+  @media (min-width: 768px) {
+    width: 366px;
+    height: 366px;
+  }
+
   circle {
     fill: none;
     stroke-linecap: round;
@@ -47,12 +55,7 @@ export default function ProgressBar() {
 
   return (
     <div>
-      <ProgressBarStyles
-        width="360"
-        height="360"
-        viewBox="0 0 120 120"
-        color={color}
-      >
+      <ProgressBarStyles viewBox="0 0 120 120" color={color}>
         <CircleStyles
           cx="60"
           cy="60"
